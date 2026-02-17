@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MTG Oldest printing finder</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <form>
+        <h1>MTG Oldest printing finder</h1>
+        <div class="actions">
+          <button type="submit">Process</button>
+          <button type="button" disabled data-action="copy">Copy</button>
+        </div>
+        <textarea name="list" placeholder="Paste in list" required></textarea>
+        <textarea name="output" readonly></textarea>
+      </form>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
