@@ -4,12 +4,18 @@ const copyButton = form.querySelector('[data-action="copy"]');
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  submitButton.disabled = true;
-  const list = parseList(event.target.list.value);
-  const resp = await mapSeries(list, request);
-  event.target.output.value = resp.filter((x) => !!x).join("\n");
-  submitButton.disabled = false;
-  copyButton.disabled = false;
+  try {
+    submitButton.disabled = true;
+    const list = parseList(event.target.list.value);
+    const resp = await mapSeries(list, request);
+    event.target.output.value = resp.filter((x) => !!x).join("\n");
+  } catch (error) {
+    console.error(error);
+    alert("Error parsing list");
+  } finally {
+    submitButton.disabled = false;
+    copyButton.disabled = false;
+  }
 });
 
 copyButton.addEventListener("click", async () => {
