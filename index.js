@@ -7,6 +7,8 @@ form.addEventListener("submit", async (event) => {
   try {
     submitButton.disabled = true;
     const list = parseList(event.target.list.value);
+    console.log(list);
+    return;
     const resp = await mapSeries(list, request);
     event.target.output.value = resp.filter((x) => !!x).join("\n");
   } catch (error) {
@@ -53,7 +55,8 @@ function parseList(list) {
     .filter(
       (x) => x && x.replace("and", "") !== x.replace("and", "").toUpperCase(),
     )
-    .map((line) => line.match(/(\d{1,2}) (.*)/).slice(1, 3));
+    .map((line) => line.match(/(\d{1,2}) (.*)/).slice(1, 3))
+    .map(([a, b]) => [a, b.trim()]);
 }
 
 const multipleLayouts = ["adventure", "transform", "modal_dfc"];
