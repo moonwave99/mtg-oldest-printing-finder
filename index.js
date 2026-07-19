@@ -7,8 +7,6 @@ form.addEventListener("submit", async (event) => {
   try {
     submitButton.disabled = true;
     const list = parseList(event.target.list.value);
-    console.log(list);
-    return;
     const resp = await mapSeries(list, request);
     event.target.output.value = resp.filter((x) => !!x).join("\n");
   } catch (error) {
